@@ -2,7 +2,16 @@
                                         xmlns:tools="http://schemas.android.com/tools" android:id="@+id/drawer_layout"
                                         android:layout_width="match_parent" android:layout_height="match_parent"
                                         tools:context=".MainActivity">
+    <LinearLayout   android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+    </android.support.v7.widget.Toolbar>
     <LinearLayout
         android:orientation="horizontal"
         android:baselineAligned="false"
@@ -25,6 +34,7 @@
     </LinearLayout>
 
 
+</LinearLayout>
 
     <!-- android:layout_gravity="start" tells DrawerLayout to treat
          this as a sliding drawer on the left side for left-to-right
