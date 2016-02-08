@@ -38,7 +38,7 @@
 
         <ListView android:id="@+id/listOfBooks"
                   android:layout_width="match_parent"
-                  android:layout_height="match_parent" android:background="@drawable/list_touch_selector"
+                  android:layout_height="match_parent"
                   android:layout_alignParentLeft="true"
                   android:layout_marginLeft="0dp"
                   android:layout_below="@+id/searchText"
