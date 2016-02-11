@@ -13,6 +13,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +25,11 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.vision.barcode.Barcode;
 import com.squareup.picasso.Picasso;
 
+import it.jaschke.alexandria.api.BarcodeCaptureActivity;
 import it.jaschke.alexandria.data.AlexandriaContract;
 import it.jaschke.alexandria.services.BookService;
 import it.jaschke.alexandria.services.DownloadImage;
@@ -42,7 +46,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     private String mScanFormat = "Format:";
     private String mScanContents = "Contents:";
-
+    private static final int RC_BARCODE_CAPTURE = 9001;
 
 
     public AddBook(){
@@ -123,12 +127,17 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 // Hint: Use a Try/Catch block to handle the Intent dispatch gracefully, if you
                 // are using an external app.
                 //when you're done, remove the toast below.
-                Context context = getActivity();
-                CharSequence text = "This button should let you scan a book for its barcode!";
-                int duration = Toast.LENGTH_SHORT;
+//                Context context = getActivity();
+//                CharSequence text = "This button should let you scan a book for its barcode!";
+//                int duration = Toast.LENGTH_SHORT;
+//
+//                Toast toast = Toast.makeText(context, text, duration);
+//                toast.show();
+                Intent intent = new Intent(getActivity(), BarcodeCaptureActivity.class);
+                intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
+                intent.putExtra(BarcodeCaptureActivity.UseFlash, true);
 
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                startActivityForResult(intent, RC_BARCODE_CAPTURE);
 
             }
         });
@@ -158,7 +167,33 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
         return rootView;
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        TextView tv = (TextView) getView().findViewById(R.id.NoBooksMsg);
 
+        if (requestCode == RC_BARCODE_CAPTURE) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
+                    tv.setText(R.string.barcode_success + " BarCode: " + barcode.displayValue);
+
+                    //barcodeValue.setText(barcode.displayValue);
+                    Log.d(TAG, "Barcode read: " + barcode.displayValue);
+                } else {
+                    tv.setText(R.string.barcode_failure);
+                    Log.d(TAG, "No barcode captured, intent data is null");
+                }
+            } else {
+                tv.setText(String.format(getString(R.string.barcode_error),
+                        CommonStatusCodes.getStatusCodeString(resultCode)));
+            }
+            tv.setContentDescription(tv.getText());
+            tv.setVisibility(View.VISIBLE);
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
     private void restartLoader(){
         getLoaderManager().restartLoader(LOADER_ID, null, this);
     }
