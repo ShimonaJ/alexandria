@@ -175,10 +175,10 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
                     Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
-                    tv.setText(R.string.barcode_success + " BarCode: " + barcode.displayValue);
-
-                    //barcodeValue.setText(barcode.displayValue);
-                    Log.d(TAG, "Barcode read: " + barcode.displayValue);
+                   // tv.setText(R.string.barcode_success + " BarCode: " + barcode.displayValue);
+                    ean.setText(barcode.displayValue);
+                            //barcodeValue.setText(barcode.displayValue);
+                            Log.d(TAG, "Barcode read: " + barcode.displayValue);
                 } else {
                     tv.setText(R.string.barcode_failure);
                     Log.d(TAG, "No barcode captured, intent data is null");
