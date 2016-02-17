@@ -41,6 +41,7 @@ package it.jaschke.alexandria.gcm;
                     if ( senderId.length() != 0 ) {
                         String token = instanceID.getToken(senderId,
                                 GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+
                         sendRegistrationToServer(token);
                     }
 
