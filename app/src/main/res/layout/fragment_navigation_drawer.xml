@@ -17,7 +17,7 @@
  </LinearLayout>-->
 <ListView  xmlns:tools="http://schemas.android.com/tools"
     tools:context=".NavigationDrawerFragment"   xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:background="@drawable/list_touch_selector"
+    android:layout_width="match_parent" android:background="#89616161"
     android:layout_height="match_parent" android:choiceMode="singleChoice" android:id="@+id/drawerList"
     android:divider="@android:color/transparent" android:dividerHeight="0dp"
 

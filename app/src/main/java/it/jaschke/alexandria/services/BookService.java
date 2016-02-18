@@ -148,16 +148,19 @@ public class BookService extends IntentService {
                 insertBookDataInLocalDB(ean,bookJsonString);
             }
         }catch(IOException e){
+            setBookStatus(this, BOOK_STATUS_SERVER_DOWN);
             Log.e(LOG_TAG, "Error ", e);
-            setBookStatus(this,BOOK_STATUS_SERVER_DOWN);
+
         }
         catch (JSONException e) {
+            setBookStatus(this, BOOK_STATUS_SERVER_INVALID);
             Log.e(LOG_TAG, e.getMessage(), e);
             e.printStackTrace();
-            setBookStatus(this, BOOK_STATUS_SERVER_INVALID);
+
         }
         catch (Exception e) {
             Log.e(LOG_TAG, "Error ", e);
+            setBookStatus(this, BOOK_STATUS_SERVER_DOWN);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
