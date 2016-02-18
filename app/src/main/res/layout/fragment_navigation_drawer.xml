@@ -1,5 +1,5 @@
-<LinearLayout android:orientation="vertical"   xmlns:tools="http://schemas.android.com/tools"
-
+<!--<LinearLayout android:orientation="vertical"   xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".NavigationDrawerFragment"
     android:layout_width="match_parent" android:elevation="16dp"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" >
@@ -12,8 +12,16 @@
         android:layout_height="match_parent" android:choiceMode="singleChoice" android:id="@+id/drawerList"
         android:divider="@android:color/transparent" android:dividerHeight="0dp"
 
-        tools:context=".NavigationDrawerFragment" >
+         >
     </ListView>
- </LinearLayout>
+ </LinearLayout>-->
+<ListView  xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".NavigationDrawerFragment"   xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:choiceMode="singleChoice" android:id="@+id/drawerList"
+    android:divider="@android:color/transparent" android:dividerHeight="0dp"
+
+    >
+</ListView>
 
 
