@@ -159,8 +159,9 @@ public class BookService extends IntentService {
 
         }
         catch (Exception e) {
-            Log.e(LOG_TAG, "Error ", e);
             setBookStatus(this, BOOK_STATUS_SERVER_DOWN);
+            Log.e(LOG_TAG, "Error ", e);
+
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();

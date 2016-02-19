@@ -42,56 +42,58 @@
             android:textSize="@dimen/head_line"
             android:textIsSelectable="true"
             android:textStyle="bold"
-
+android:textColor="@color/primary_dark"
             />
-        <Button android:gravity="right"
+
+        <Button android:gravity="right|center"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="@string/cancel_button"
-            android:layout_weight="1"
 
+android:background="@drawable/touch_selector"
             android:id="@+id/delete_button"
             android:drawableLeft="@drawable/ic_action_discard"
             android:visibility="invisible"
             />
 
-        <Button android:gravity="right"
+        <Button android:gravity="right|center"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="@string/ok_button"
             android:visibility="invisible"
-            android:layout_weight="1"
+            android:background="@drawable/touch_selector"
             android:id="@+id/save_button"
             android:drawableLeft="@drawable/ic_action_accept"
 
-            android:layout_gravity="bottom"
+
             />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="horizontal">
         <FrameLayout android:layout_gravity="left"
-            android:layout_width="120dp"
-            android:layout_height="150dp">
+            android:layout_width="@dimen/book_cover_width" android:layout_weight="1"
+            android:layout_height="@dimen/book_cover_height">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/bookCover" android:scaleType="center"
+                android:layout_width="match_parent" android:adjustViewBounds="true" android:layout_gravity="center"
+                android:layout_height="match_parent" android:scaleType="fitCenter"
+                android:id="@+id/bookCover"
                 android:contentDescription="@string/book_cover"
                 />
 
         </FrameLayout>
-        <LinearLayout android:layout_gravity="right" android:layout_marginLeft="100dp"
-            android:layout_width="match_parent" android:orientation="vertical"
+        <LinearLayout android:layout_gravity="right" android:layout_marginLeft="20dp"
+            android:layout_width="0dp" android:layout_weight="2" android:orientation="vertical"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/bookSubTitle"
                 android:layout_marginTop="10dp"
-
+android:text="Test"
                 android:maxLines="3"
-                android:ellipsize="end"
+                android:textSize="15dp"
 
                 />
             <TextView
