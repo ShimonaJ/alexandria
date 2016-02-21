@@ -15,7 +15,8 @@
     </android.support.v7.widget.Toolbar>
     <!-- As the main content view, the view below consumes the entire
          space available using match_parent in both dimensions. -->
-    <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
+    <FrameLayout android:id="@+id/container" android:layout_width="match_parent" android:padding="@dimen/activity_horizontal_margin"
+        android:background="@color/white"
         android:layout_height="match_parent" />
 </LinearLayout>
 

@@ -44,7 +44,7 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        Cursor cursor = getActivity().getContentResolver().query(
+        final Cursor cursor = getActivity().getContentResolver().query(
                 AlexandriaContract.BookEntry.CONTENT_URI,
                 null, // leaving "columns" null just returns all the columns.
                 null, // cols for "where" clause
@@ -69,20 +69,35 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
         bookList = (ListView) rootView.findViewById(R.id.listOfBooks);
         bookList.setEmptyView(rootView.findViewById(R.id.NoBooksMsg));
         bookList.setAdapter(bookListAdapter);
-
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+
                 Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
-              //  Cursor cursor = bookListAdapter.getCursor();
-                if (cursor != null ) {
+                if (cursor != null) {
                     ((Callback) getActivity())
                             .onItemSelected(cursor.getString(cursor.getColumnIndex(AlexandriaContract.BookEntry._ID)));
 
+
                 }
+
             }
         });
+//        bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//cursor.moveToPosition(position);
+//                //Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
+//              //  Cursor cursor = bookListAdapter.getCursor();
+//                if (cursor != null ) {
+//                    ((Callback) getActivity())
+//                            .onItemSelected(cursor.getString(cursor.getColumnIndex(AlexandriaContract.BookEntry._ID)));
+//
+//                }
+//            }
+//        });
 
         return rootView;
     }
