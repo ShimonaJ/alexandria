@@ -96,7 +96,7 @@
                     android:id="@+id/backButton"
                     android:onClick="goBack"
                     android:src="@drawable/ic_action_undo"
-                    style="?android:attr/buttonBarButtonStyle"
+
                     android:layout_gravity="right|top"
                     android:layout_alignParentTop="true"
                     android:layout_alignRight="@+id/fullBookTitle"
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/delete"
-                style="?android:attr/buttonBarButtonStyle"
+
                 android:id="@+id/delete_button"
                 android:drawableLeft="@drawable/ic_action_discard"
                 android:layout_marginRight="10dp"
